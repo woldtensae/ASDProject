@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appinfo>
+	<appname>Framework App</appname>
+	<windowresizable>false</windowresizable>
+	<!-- loginbackground should be a JPG file of 800px x 600px  -->
+	<loginbackground>bin/framework/ui/images/librarybg1.jpg</loginbackground>
+	<!-- headerbackground should be a JPG file of 1024px x 150px -->
+	<headerbackground></headerbackground>
+	
+</appinfo>
