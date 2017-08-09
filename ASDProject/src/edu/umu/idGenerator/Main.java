@@ -22,5 +22,6 @@ public class Main {
 		Category category3 = new Category();
 		System.out.println(category3.getId());
 		
+		
 	}
 }

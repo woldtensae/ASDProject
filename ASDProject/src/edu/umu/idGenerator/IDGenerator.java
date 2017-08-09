@@ -79,6 +79,7 @@ public class IDGenerator implements AutoGenerate{
 	
 			}
 			writeUniqueIdOnMap(readMap);
+			
 		}catch(EOFException efe){
 			
 			
