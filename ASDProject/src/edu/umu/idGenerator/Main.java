@@ -2,10 +2,10 @@ package edu.umu.idGenerator;
 
 public class Main {
 	public static void main(String[] args){
-		FileConnection fc = FileConnection.getInstance();
-		System.out.println(fc.readUniqueId());
-		System.out.println(fc.readUniqueId());
-		System.out.println(fc.readUniqueId());
-		System.out.println(fc.readUniqueId());
+		AutoGenerate fc = IDGenerator.getInstance();
+		System.out.println(fc.getUniqueId());
+		System.out.println(fc.getUniqueId());
+		System.out.println(fc.getUniqueId());
+		System.out.println(fc.getUniqueId());
 	}
 }
