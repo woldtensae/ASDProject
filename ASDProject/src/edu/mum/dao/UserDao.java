@@ -7,5 +7,4 @@ public interface UserDao extends Dao<User> {
 	public User update(User user);
 	public User findOne(String id);	
 	public User findByUserName(String userName);
-	
 }
