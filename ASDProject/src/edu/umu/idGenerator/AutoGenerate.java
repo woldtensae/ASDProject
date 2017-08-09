@@ -1,5 +1,5 @@
 package edu.umu.idGenerator;
 
 public interface AutoGenerate {
-	public int  getUniqueId();
+	public int  getUniqueId(String className);
 }
