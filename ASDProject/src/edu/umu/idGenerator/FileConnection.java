@@ -57,7 +57,7 @@ public class FileConnection {
 		    everything = sb.toString();
 		    try{
 		    	num = Integer.parseInt(everything.trim());
-		    	num1 = num++;
+		    	num1 = num+1;
 		    	writeUniqueId(String.valueOf(num1));
 		    }catch(NumberFormatException e){ e.printStackTrace();}	
 		}catch(FileNotFoundException e){
