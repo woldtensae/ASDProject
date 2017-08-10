@@ -12,4 +12,5 @@ public interface CredentialService {
 	public void updateCredential(Credential credential);
 	public Credential findCredentialByName(String username);
 	public List<Credential> findAllCredential();
+	public boolean login(String userName, String password);
 }

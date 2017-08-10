@@ -1,7 +1,6 @@
 package edu.mum.framework.domain;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 public abstract class Product implements Serializable{
 		   
@@ -18,6 +17,30 @@ public abstract class Product implements Serializable{
 		   private Category category;
 		   private Unit unit;
 		   
+		public String getProductName() {
+			return productName;
+		}
+		public void setProductName(String productName) {
+			this.productName = productName;
+		}
+		public double getUnitPrice() {
+			return unitPrice;
+		}
+		public void setUnitPrice(double unitPrice) {
+			this.unitPrice = unitPrice;
+		}
+		public Category getCategory() {
+			return category;
+		}
+		public void setCategory(Category category) {
+			this.category = category;
+		}
+		public Unit getUnit() {
+			return unit;
+		}
+		public void setUnit(Unit unit) {
+			this.unit = unit;
+		}
 		public Product(String productName, String productId, String productDesc, boolean status, double unitPrice,
 				Category category, Unit unit) {
 			this.productName = productName;
@@ -56,9 +79,7 @@ public abstract class Product implements Serializable{
 			return productDesc;
 		}
 
-
-
-		public void setProductDesc(String productDesc) {
+      public void setProductDesc(String productDesc) {
 			this.productDesc = productDesc;
 		}
 
@@ -72,6 +93,12 @@ public abstract class Product implements Serializable{
 
 		public void setStatus(boolean status) {
 			this.status = status;
+		}
+		@Override
+		public String toString() {
+			return "Product [productName=" + productName + ", productId=" + productId + ", productDesc=" + productDesc
+					+ ", status=" + status + ", unitPrice=" + unitPrice + ", category=" + category + ", unit=" + unit
+					+ "]";
 		}
 		
 		

@@ -1,32 +1,33 @@
 package edu.mum.app.domain;
 
-import java.io.Serializable;
-
 import edu.mum.framework.domain.Category;
 import edu.mum.framework.domain.Product;
 import edu.mum.framework.domain.Unit;
 
-public class Book extends Product  implements Serializable{
+public class Book extends Product {
+
 	private static final long serialVersionUID = -5101693623665618963L;
 	private String publisher;
 	private String yearPub;
 	private String shelfNo;
 	private String isbn;
 	private int availability;
-	private int maxCheckoutLength; // change from rentalDay(7/21)
 	private String author;
-	
+
+	public Book() {
+
+	}
+
 	public Book(String productName, String productId, String productDesc, boolean status, double unitPrice,
-			Category category, Unit unit, String publisher, String yearPub, String shelfNo, String isbn,
-			int availability, int maxCheckoutLength, String author) {
+		Category category, Unit unit, String publisher, String yearPub, String shelfNo, String isbn,
+			int availability, String author) {
 		super(productName, productId, productDesc, status, unitPrice, category, unit);
-		this.publisher = publisher;
-		this.yearPub = yearPub;
-		this.shelfNo = shelfNo;
-		this.isbn = isbn;
-		this.availability = availability;
-		this.maxCheckoutLength = maxCheckoutLength;
-		this.author = author;
+				this.publisher = publisher;
+				this.yearPub = yearPub;
+				this.shelfNo = shelfNo;
+				this.isbn = isbn;
+				this.availability = availability;
+				this.author = author;
 	}
 	public String getPublisher() {
 		return publisher;
@@ -58,11 +59,12 @@ public class Book extends Product  implements Serializable{
 	public void setAvailability(int availability) {
 		this.availability = availability;
 	}
-	public int getMaxCheckoutLength() {
-		return maxCheckoutLength;
+	
+	public String getAuthor() {
+		return author;
 	}
-	public void setMaxCheckoutLength(int maxCheckoutLength) {
-		this.maxCheckoutLength = maxCheckoutLength;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 	
 	

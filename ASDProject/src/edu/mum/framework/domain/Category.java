@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Category implements Serializable {
+public abstract class Category implements Serializable {
 
 	/**
 	* 
@@ -48,4 +48,12 @@ public class Category implements Serializable {
 	public void setProductList(List<Product> productList) {
 		this.productList = productList;
 	}
+
+	@Override
+	public String toString() {
+		return "Category [categoryId=" + categoryId + ", categoryName=" + categoryName + ", productList=" + productList
+				+ "]";
+	}
+	
+	
 }

@@ -15,11 +15,19 @@ private static final long serialVersionUID = 1L;
 	private LocalDate checkoutDate;
 	private LocalDate returnDate;
 	private List<Product> rentedProducts;
+	private  double totalRentPrice;
 	private User user;
 		
 	
+	public double getTotalRentPrice() {
+		return totalRentPrice;
+	}
+
+	public void setTotalRentPrice(double totalRentPrice) {
+		this.totalRentPrice = totalRentPrice;
+	}
+
 	public Rent(String rentId, LocalDate checkoutDate, LocalDate returnDate, User user) {
-		super();
 		this.rentId = rentId;
 		this.checkoutDate = checkoutDate;
 		this.returnDate = returnDate;
