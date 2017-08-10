@@ -3,7 +3,7 @@ package edu.mum.framework.domain;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public  class User implements Serializable {
+public abstract  class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String id;
