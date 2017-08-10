@@ -2,53 +2,52 @@ package edu.mum.framework.service.impl;
 
 import java.util.List;
 
-import edu.mum.dao.CredentialDao;
-import edu.mum.framework.domain.Credential;
+import edu.mum.framework.dao.CredentialDao;
+import edu.mum.framework.domain.ACredential;
 import edu.mum.framework.service.CredentialService;
 
-
-
-public class CredentialServiceImpl implements CredentialService{
-    private CredentialDao credentialDao;
-    public CredentialServiceImpl(CredentialDao credentialDao){
-    	this.credentialDao=credentialDao;
-    }
-    
+public class CredentialServiceImpl<T> implements CredentialService<T> {
+	private CredentialDao credentialDao;
+	
+	public CredentialServiceImpl(CredentialDao credentialDao){
+		this.credentialDao=credentialDao;
+	}
 
 	@Override
-	public void saveCredential(Credential credential) {
-		if(credentialDao.findAll().stream().filter(x->x.getUserName()== credential.getUserName())==null);
-		   credentialDao.add(credential);
+	public void saveCredential(T credential) {
+		credentialDao.add(credential);
 		
 	}
 
 	@Override
-	public void deletCredential(Credential credential) {
+	public void deleteCredential(T credential) {
 		credentialDao.remove(credential);
 		
 	}
 
 	@Override
-	public void updateCredential(Credential credential) {
-		//credentialDao.up(credential);
+	public void updateCredential(ACredential credential) {
+		credentialDao.update(credential);
 		
 	}
 
 	@Override
-	public  Credential findCredentialByName(String username) {
-		//return credentialDao.findCredentialByName(username);
-		return null;
+	public T findCredentialByName(String username) {
+		return (T) credentialDao.findByUserName(username);
 	}
 
 	@Override
-	public List<Credential> findAllCredential() {
-		return credentialDao.findAll();
+	public List<T> findAllCredential() {
+	    return credentialDao.findAll();
 	}
-	
-   public boolean login(String userName, String password)
-   {
-	   if(credentialDao.findAll().stream().anyMatch(x->x.getUserName().equals(userName) && x.getPassword().equals(password)))
-			  return true;
-		return 	false;	  
-   }
+
+	@Override
+	public boolean login(String userName, String password) {
+		/*List<T> list= findAllCredential();
+		if(list.stream().anyMatch(x->x.getPassword().equals(password) && x.getUserName().equals(userName)))
+		    return true;*/
+		return false;
+				
+	}
+
 }

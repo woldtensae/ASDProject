@@ -2,52 +2,53 @@ package edu.mum.framework.service.impl;
 
 import java.util.List;
 
-import edu.mum.dao.CategoryDao;
-import edu.mum.framework.domain.Category;
-import edu.mum.framework.domain.Product;
+import edu.mum.framework.dao.CategoryDao;
+import edu.mum.framework.domain.ACategory;
+import edu.mum.framework.domain.concrete.Category;
 import edu.mum.framework.service.CategoryService;
 
-public class CategoryServiceImpl implements CategoryService {
+public class  CategoryServiceImpl<T> implements CategoryService<T> {
     private CategoryDao  categoryDao;
-	
-    public CategoryServiceImpl(CategoryDao categoryDao)
-    {
+     
+    public CategoryServiceImpl(CategoryDao  categoryDao){
     	this.categoryDao=categoryDao;
     }
-    @Override
-	public void saveCategory(Category category) {
-    	categoryDao.add(category);
+    
+	@Override
+	public void saveCategory(T category) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deletCategory(Category category) {
-		categoryDao.remove(category);
+	public void deleteCategory(T category) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateCategor(Category category) {
-		//categoryDao.update(category);
+	public void updateCategor(ACategory category) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Product findOneCategory(String id) {
-		//categoryDao.findOne(id);
+	public <T> ACategory findOneCategory(String id) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Product findCategoryByName(String categoryName) {
-		//categoryDao.findCategoryByName(categoryName);
+	public T findCategoryByName(String categoryName) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Category> findAllCategory() {
-		categoryDao.findAll();
+	public List<T> findAllCategory() {
+		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+ 
 }

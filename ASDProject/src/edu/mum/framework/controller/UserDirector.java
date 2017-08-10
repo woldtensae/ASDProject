@@ -2,7 +2,9 @@ package edu.mum.framework.controller;
 
 import java.time.LocalDate;
 
-import edu.mum.framework.domain.User;
+import edu.mum.framework.domain.Role;
+import edu.mum.framework.domain.UserStatus;
+import edu.mum.framework.domain.concrete.User;
 
 public class UserDirector {
 	UserBuilder userBuilder = null;
@@ -17,10 +19,13 @@ public class UserDirector {
 	public void userAddress(String address, String city, String state, int zip){
 		userBuilder.buildAddress(address, city, state, zip);
 	}
-	public void userCredential(String userName, String password){
-		userBuilder.buildCredential(userName, password);
+	public void userCredential(String userName, String password, Role role){
+		userBuilder.buildCredential(userName, password, role);
 	}
-	public User getUser(){
-		return userBuilder.getUser();
+	public void userStatus(UserStatus userStatus){
+		userBuilder.buildStatus(userStatus);;
+	}
+	public User createFullUser(){
+		return userBuilder.createFullUser();
 	}
 }

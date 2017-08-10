@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Category implements Serializable {
+public abstract class ACategory implements Serializable {
 
 	/**
 	* 
@@ -12,16 +12,16 @@ public abstract class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String categoryId;
 	private String categoryName;
-	private List<Product> productList;
+	private List<AProduct> productList;
 
-	public Category(String categoryId, String categoryName) {
+	public ACategory(String categoryId, String categoryName) {
 		super();
 		this.categoryId = categoryId;
 		this.categoryName = categoryName;
-		this.productList = new ArrayList<Product>();
+		this.productList = new ArrayList<AProduct>();
 	}
 
-	public void addProduct(Product product) {
+	public void addProduct(AProduct product) {
 		productList.add(product);
 	}
 
@@ -41,11 +41,11 @@ public abstract class Category implements Serializable {
 		this.categoryName = categoryName;
 	}
 
-	public List<Product> getProductList() {
+	public List<AProduct> getProductList() {
 		return productList;
 	}
 
-	public void setProductList(List<Product> productList) {
+	public void setProductList(List<AProduct> productList) {
 		this.productList = productList;
 	}
 

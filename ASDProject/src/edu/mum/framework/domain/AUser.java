@@ -3,7 +3,7 @@ package edu.mum.framework.domain;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract  class User implements Serializable {
+public abstract class AUser implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String id;
@@ -13,22 +13,14 @@ public abstract  class User implements Serializable {
 	private String phoneNumber;
 	private Address address;
 	private UserStatus userStatus;
-	private Credential credential;
+	private ACredential credentialA;
 
-	public Credential getCredential() {
-		return credential;
-	}
-
-	public void setCredential(Credential credential) {
-		this.credential = credential;
-	}
-
-	public User() {
+	public AUser() {
 
 	}
 
-	public User(String id, LocalDate dob, String firstName, String lastName, String phoneNumber, Address address,
-			UserStatus userStatus, Credential credential) {
+	public AUser(String id, LocalDate dob, String firstName, String lastName, String phoneNumber, Address address,
+			UserStatus userStatus, ACredential credentialA) {
 
 		this.id = id;
 		this.dob = dob;
@@ -37,10 +29,10 @@ public abstract  class User implements Serializable {
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 		this.userStatus = userStatus;
-		this.credential = credential;
+		this.credentialA = credentialA;
 	}
 	
-	public User(String id, LocalDate dob, String firstName, String lastName, String phoneNumber) {
+	public AUser(String id, LocalDate dob, String firstName, String lastName, String phoneNumber) {
 
 		this.id = id;
 		this.dob = dob;
@@ -97,7 +89,7 @@ public abstract  class User implements Serializable {
 			return false;
 		else if (object.getClass() != this.getClass())
 			return false;
-		User person = (User) object;
+		AUser person = (AUser) object;
 		return person.getId() == (this.id);
 	}
 
@@ -121,7 +113,15 @@ public abstract  class User implements Serializable {
 	public String toString() {
 		return "User [id=" + id + ", dob=" + dob + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", phoneNumber=" + phoneNumber + ", address=" + address + ", userStatus=" + userStatus
-				+ ", credential=" + credential + "]";
+				+ ", credential=" + credentialA + "]";
+	}
+
+	public ACredential getCredentialA() {
+		return credentialA;
+	}
+
+	public void setCredentialA(ACredential credentialA) {
+		this.credentialA = credentialA;
 	}
 
 }

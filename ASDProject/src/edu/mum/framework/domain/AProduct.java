@@ -2,19 +2,15 @@ package edu.mum.framework.domain;
 
 import java.io.Serializable;
 
-public abstract class Product implements Serializable{
+public abstract class AProduct implements Serializable{
 		   
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	       private String productName;
 		   private String productId;
 		   private String productDesc;
 		   private boolean status; 
 		   private double unitPrice;
-		   private Category category;
+		   private String category;
 		   private Unit unit;
 		   
 		public String getProductName() {
@@ -29,10 +25,10 @@ public abstract class Product implements Serializable{
 		public void setUnitPrice(double unitPrice) {
 			this.unitPrice = unitPrice;
 		}
-		public Category getCategory() {
+		public String getCategory() {
 			return category;
 		}
-		public void setCategory(Category category) {
+		public void setCategory(String category) {
 			this.category = category;
 		}
 		public Unit getUnit() {
@@ -41,8 +37,8 @@ public abstract class Product implements Serializable{
 		public void setUnit(Unit unit) {
 			this.unit = unit;
 		}
-		public Product(String productName, String productId, String productDesc, boolean status, double unitPrice,
-				Category category, Unit unit) {
+		public AProduct(String productName, String productId, String productDesc, boolean status, double unitPrice,
+				String category, Unit unit) {
 			this.productName = productName;
 			this.productId = productId;
 			this.productDesc = productDesc;
@@ -51,9 +47,7 @@ public abstract class Product implements Serializable{
 			this.category = category;
 			this.unit = unit;
 		}
-		public Product() {
-			
-		}
+		
 		public String getProdcutName() {
 			return productName;
 		}

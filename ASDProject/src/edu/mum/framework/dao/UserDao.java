@@ -1,8 +1,11 @@
 package edu.mum.framework.dao;
 
-import edu.mum.framework.domain.User;
+import edu.mum.framework.domain.AUser;
 
-public interface UserDao extends Dao<User> {
-	public User findByUserName(String name);
+public interface UserDao<T> extends Dao<T> {
+	public void remove(String id);
+	public boolean update(AUser user);
+	public T findOne(String id);	
+	public T findByUserName(String userName);
 	
 }

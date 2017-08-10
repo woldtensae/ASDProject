@@ -3,31 +3,50 @@ package edu.mum.framework.controller;
 import java.time.LocalDate;
 
 import edu.mum.framework.domain.Address;
-import edu.mum.framework.domain.CredentialTemplate;
-import edu.mum.framework.domain.User;
-import edu.mum.framework.domain.UserTemplate;
+import edu.mum.framework.domain.Role;
+import edu.mum.framework.domain.UserStatus;
+import edu.mum.framework.domain.concrete.Credential;
+import edu.mum.framework.domain.concrete.User;
+import edu.mum.framework.service.CredentialService;
+import edu.mum.framework.service.UserService;
+import edu.mum.framework.service.factory.ServiceFactory;
 import edu.umu.idGenerator.AutoGenerate;
 import edu.umu.idGenerator.IDGenerator;
 
 public class UserCreator implements UserBuilder{
 	AutoGenerate autoGenerate;
 	User user;
+	@SuppressWarnings("unchecked")
+	UserService<User> userService = ServiceFactory.createUserService(User.class, User.class.getSimpleName());
+	@SuppressWarnings("unchecked")
+	CredentialService<Credential> credentialService = ServiceFactory.createCredentialService
+			(Credential.class, Credential.class.getSimpleName());
 	public void userInfo(LocalDate dob, String firstName, String lastName, String phoneNumber){
 		autoGenerate = IDGenerator.getInstance();
 		String id = String.valueOf(autoGenerate.getUniqueId(User.class.getSimpleName()));
-		user = new UserTemplate(id, dob,firstName, lastName, phoneNumber);
+		user = new User(id, dob,firstName, lastName, phoneNumber);
 	}
+	
 	@Override
 	public void buildAddress(String address, String city, String state, int zip) {
 		user.setAddress(new Address(address, city, state, zip));	
 	}
+	
 	@Override
-	public void buildCredential(String userName, String password) {
-		CredentialTemplate credential = new CredentialTemplate(userName, password);
-		user.setCredential(credential);
+	public void buildCredential(String userName, String password, Role role) {
+		Credential credential = new Credential(userName, password, role);
+		credentialService.saveCredential(credential);
+		user.setCredentialA(credential);;
 	}
+	
 	@Override
-	public User getUser() {
+	public User createFullUser() {
+		userService.saveUser(user);
 		return user;
-	}	
+	}
+
+	@Override
+	public void buildStatus(UserStatus userStatus) {
+		user.setUserStatus(userStatus);	
+	}
 }

@@ -2,47 +2,50 @@ package edu.mum.framework.service.impl;
 
 import java.util.List;
 
-import edu.mum.dao.ProductDao;
-import edu.mum.framework.domain.Product;
+import edu.mum.framework.dao.ProductDao;
+import edu.mum.framework.domain.AProduct;
+import edu.mum.framework.domain.concrete.Product;
 import edu.mum.framework.service.ProductService;
 
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl<T> implements ProductService<T>{
      private ProductDao productDao;
      
-     public ProductServiceImpl(ProductDao productDao){
+     public ProductServiceImpl(ProductDao productDao)
+     {
     	 this.productDao=productDao;
      }
-	
+
 	@Override
-	public void saveProduct(Product product) {
+	public void saveProduct(T product) {
 		productDao.add(product);
-		
 	}
 
 	@Override
-	public void deletProduct(Product product) {
+	public void deleteProduct(T product) {
 		productDao.remove(product);
 		
 	}
 
 	@Override
-	public Product findOneProduct(String id) {
-		return productDao.findOne(id);
+	public T findOneProduct(String id) {
+		return (T) productDao.findOne(id);
 	}
 
 	@Override
-	public Product findProductByName(String productName) {
-		return productDao.findByProductName(productName);
+	public T findProductByName(String productName) {
+		return (T) productDao.findByProductName(productName);
 	}
 
 	@Override
-	public List<Product> findAllProduct() {
-		return productDao.findAll();
+	public List<T> findAllProduct() {
+		List<T> list=productDao.findAll();
+		return list;
 	}
+
 	@Override
-	public void updateProductById(Product product) {
-		productDao.update(product);
+	public void updateProductById(T product) {
+		// TODO Auto-generated method stub
 		
 	}
-
+	
 }

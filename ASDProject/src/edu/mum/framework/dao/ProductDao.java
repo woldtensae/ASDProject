@@ -1,7 +1,10 @@
 package edu.mum.framework.dao;
 
-import edu.mum.framework.domain.Product;
+import edu.mum.framework.domain.AProduct;
 
-public interface ProductDao extends Dao<Product> {
-  public Product findByProductName(String name);
+public interface ProductDao<T> extends Dao<T> {
+	public void remove(String id);
+	public boolean update(AProduct product);
+	public T findOne(String id);
+	public T findByProductName(String name);
 }

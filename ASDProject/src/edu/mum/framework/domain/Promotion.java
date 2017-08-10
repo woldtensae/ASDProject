@@ -9,7 +9,7 @@ public abstract class Promotion {
 	private double  discount;
 	private LocalDate startDate;
     private LocalDate endDate;
-    private List<Product> product;
+    private List<AProduct> product;
     
 	public double getDiscount() {
 		return discount;
@@ -42,10 +42,10 @@ public abstract class Promotion {
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
-	public List<Product> getProduct() {
+	public List<AProduct> getProduct() {
 		return product;
 	}
-	public void setProduct(List<Product> product) {
+	public void setProduct(List<AProduct> product) {
 		this.product = product;
 	}
     
