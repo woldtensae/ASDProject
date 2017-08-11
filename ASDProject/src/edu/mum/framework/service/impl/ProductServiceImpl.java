@@ -1,16 +1,17 @@
 package edu.mum.framework.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import edu.mum.framework.dao.ProductDao;
 import edu.mum.framework.domain.AProduct;
-import edu.mum.framework.domain.concrete.Product;
 import edu.mum.framework.service.ProductService;
 
+@SuppressWarnings("unchecked")
 public class ProductServiceImpl<T> implements ProductService<T>{
-     private ProductDao productDao;
+     private ProductDao<T> productDao;
      
-     public ProductServiceImpl(ProductDao productDao)
+     public ProductServiceImpl(ProductDao<T> productDao)
      {
     	 this.productDao=productDao;
      }
@@ -46,6 +47,18 @@ public class ProductServiceImpl<T> implements ProductService<T>{
 	public void updateProductById(T product) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<T> avalibleProductforRent() {
+		List<AProduct> list=(List<AProduct>) findAllProduct();
+		return (List<T>) list.stream().filter(x->x.isStatus()==true).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<T> RentedProduct() {
+		List<AProduct> list=(List<AProduct>) findAllProduct();
+		return (List<T>) list.stream().filter(x->x.isStatus()==false).collect(Collectors.toList());
 	}
 	
 }

@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import edu.mum.framework.domain.AUser;
 import edu.mum.framework.domain.concrete.Rent;
-import edu.mum.framework.domain.concrete.User;
 import edu.mum.framework.generator.id.AutoGenerate;
 import edu.mum.framework.generator.id.IDGenerator;
 import edu.mum.framework.service.RentService;
@@ -22,7 +21,7 @@ AutoGenerate autoGenerate;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public RentService<Rent, User> getRentServices(){
+	public RentService<Rent> getRentServices(){
 		return ServiceFactory.createRenttService(Rent.class, Rent.class.getSimpleName());
 		
 	}

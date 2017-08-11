@@ -12,5 +12,7 @@ public interface ProductService<T> {
 	public T findOneProduct(String id);
 	public T findProductByName(String productName);
 	public List<T> findAllProduct();
+	public List<T> avalibleProductforRent();
+	public List<T> RentedProduct();
 	
 }

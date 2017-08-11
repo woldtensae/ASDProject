@@ -1,21 +1,28 @@
 package edu.mum.framework.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import edu.mum.framework.dao.UserDao;
 import edu.mum.framework.domain.AUser;
+import edu.mum.framework.domain.concrete.User;
 import edu.mum.framework.service.UserService;
 
 public class  UserServiceImpl<T> implements UserService<T>{
-     private UserDao userDao;
+     private UserDao<T> userDao;
      
-     public UserServiceImpl(UserDao userDao){
+     public UserServiceImpl(UserDao<T> userDao){
     	 this.userDao=userDao;
      }
 
 	@Override
-	public void saveUser(T user) {
+	public boolean saveUser(T user) {
+		if (userDao.findAll().stream().anyMatch(x -> ((AUser) x).getCredentialA().getPassword()
+				.equals(((AUser) user).getCredentialA().getPassword())
+				&& ((AUser) x).getCredentialA().getUserName().equals(((AUser) user).getCredentialA().getUserName())))
+			return false;
 		userDao.add(user);
+		return true;
 	}
 
 	@Override
@@ -25,12 +32,13 @@ public class  UserServiceImpl<T> implements UserService<T>{
 
 	@Override
 	public void updateUserById(String id) {
-		//userDao.update(T);
+		//userDao.update(id);
 	}
 
 	@Override
 	public void updateUser(T user) {
-	   //userDao.update(user)
+		 
+		userDao.update(user);
 		
 	}
 
@@ -49,5 +57,19 @@ public class  UserServiceImpl<T> implements UserService<T>{
 	public List<T> findAllUser() {
 		return (List<T>) userDao.findAll();
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public T login(String userName, String password) {
+		List<AUser> list = (List<AUser>) findAllUser();
+		System.out.println("list :"+list);
+		for (AUser u : list) {
+			if (u.getCredentialA().getUserName().equals(userName) && u.getCredentialA().getPassword().equals(password))
+				return (T) u;
+
+		}
+		return null;
+
+	}
+
 }
