@@ -11,9 +11,9 @@ public class ACategoryDaoImpl<T> extends DaoImpl<T> implements CategoryDao<T>{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean update(ACategory category) {
+	public void update(ACategory category) {
 		this.findAll().remove(findCategoryById(category.getCategoryId()));
-		return this.findAll().add((T) category);
+		this.add((T) category);
 	}
 
 	@Override

@@ -19,10 +19,10 @@ public class ReadWriteImpl<T> extends ReadWrite<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<T> read(String className) {
-
+	public List<T> read(String className) {		
 		boolean check = true;
 		ObjectInputStream input = FileInstace.inputConnection(className);
+		if(input == null) return list;
 		try {
 			Object object = input.readObject();
 			while (check) {

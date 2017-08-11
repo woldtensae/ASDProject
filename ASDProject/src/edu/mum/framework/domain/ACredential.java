@@ -4,29 +4,13 @@ import java.io.Serializable;
 
 public abstract class ACredential implements Serializable{
 	   
-	
-/**
-* 
-*/
 private static final long serialVersionUID = 1L;
 private String userName;
 private String password;
 private Role userRole;
+
 public String getUserName() {
 	return userName;
-}
-
-public ACredential() {
-	
-}
-
-
-
-public ACredential(String userName, String password, Role userRole) {
-	super();
-	this.userName = userName;
-	this.password = password;
-	this.userRole = userRole;
 }
 
 @Override
@@ -44,9 +28,10 @@ public void setPassword(String password) {
 	this.password = password;
 }
 
-public ACredential(String userName, String password) {
+public ACredential(String userName, String password,Role userRole) {
 	this.userName = userName;
 	this.password = password;
+	this.userRole=userRole;
 }
 
 public Role getUserRole() {

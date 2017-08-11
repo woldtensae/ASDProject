@@ -11,9 +11,9 @@ public class ACredentialDaoImpl<T> extends DaoImpl<T> implements CredentialDao<T
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean update(ACredential credential) {
+	public void update(ACredential credential) {
 		this.findAll().remove(findByUserName(credential.getUserName()));
-		return this.findAll().add((T) credential);
+		this.add((T) credential);;
 	}
 
 	@Override

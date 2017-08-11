@@ -15,9 +15,6 @@ public abstract class AUser implements Serializable {
 	private UserStatus userStatus;
 	private ACredential credentialA;
 
-	public AUser() {
-
-	}
 
 	public AUser(String id, LocalDate dob, String firstName, String lastName, String phoneNumber, Address address,
 			UserStatus userStatus, ACredential credentialA) {

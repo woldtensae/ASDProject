@@ -7,11 +7,12 @@ import edu.mum.framework.domain.Role;
 import edu.mum.framework.domain.UserStatus;
 import edu.mum.framework.domain.concrete.Credential;
 import edu.mum.framework.domain.concrete.User;
+import edu.mum.framework.generator.id.AutoGenerate;
+import edu.mum.framework.generator.id.IDGenerator;
 import edu.mum.framework.service.CredentialService;
 import edu.mum.framework.service.UserService;
 import edu.mum.framework.service.factory.ServiceFactory;
-import edu.umu.idGenerator.AutoGenerate;
-import edu.umu.idGenerator.IDGenerator;
+
 
 public class UserCreator implements UserBuilder{
 	AutoGenerate autoGenerate;
@@ -25,6 +26,7 @@ public class UserCreator implements UserBuilder{
 		autoGenerate = IDGenerator.getInstance();
 		String id = String.valueOf(autoGenerate.getUniqueId(User.class.getSimpleName()));
 		user = new User(id, dob,firstName, lastName, phoneNumber);
+		
 	}
 	
 	@Override

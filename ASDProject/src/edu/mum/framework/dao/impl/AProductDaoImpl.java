@@ -13,12 +13,13 @@ public class AProductDaoImpl<T> extends DaoImpl<T> implements ProductDao<T> {
 	@Override
 	public void remove(String id) {
 		this.findAll().remove(findOne(id));
+		write();
 		}
 
 	@Override
-	public boolean update(AProduct product) {
+	public void update(AProduct product) {
 		remove(product.getProductId());
-		return this.findAll().add((T)product);
+		this.add((T)product);
 	}
 
 	@Override

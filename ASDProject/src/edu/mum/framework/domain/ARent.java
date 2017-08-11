@@ -29,10 +29,6 @@ private static final long serialVersionUID = 1L;
 		this.returnDate = returnDate;
 		this.user = user;
 	}
-	 
-	public ARent() {
-		
-	}
 
 	public String getRentId() {
 		return rentId;

@@ -2,14 +2,12 @@ package edu.mum.framework.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import edu.mum.framework.dao.Dao;
 import edu.mum.framework.dao.impl.proxy.ReadWrite;
 import edu.mum.framework.dao.impl.proxy.ReadWriteProxy;
 
-public abstract class DaoImpl<T> extends TimerTask implements Dao<T>{
+public abstract class DaoImpl<T> implements Dao<T>{
     
 	protected Class<T> daoType;
 	private volatile List<T>  list = new ArrayList<>();
@@ -19,8 +17,7 @@ public abstract class DaoImpl<T> extends TimerTask implements Dao<T>{
 	public DaoImpl(Class<T> daoType, String className) {
 		this.daoType = daoType;
 		this.className = className;
-		Timer timer = new Timer();
-		timer.schedule(this, 0, 5000);
+		findAll();
 	}
 
 	public void write(){
@@ -33,26 +30,25 @@ public abstract class DaoImpl<T> extends TimerTask implements Dao<T>{
 	
 	@Override
 	public void add(T t) {
-		list.add(t);		
+		list.add(t);
+		write();
 	}
 
 	@Override
 	public void remove(T t) {
-		list.remove(t);		
+		list.remove(t);
+		write();
 	}
 
 	@Override
 	public List<T> findAll() {
-		if(list.size()!=0){
+		if(list.size()>0){
 			return list;
 		}
+		//System.out.println(className);
 		this.readWrite = new ReadWriteProxy<>(daoType);
 		this.list = readWrite.read(className);
 		return list;
 	}
 	
-	@Override
-	public void run() {
-		this.write();		
-	}
 }

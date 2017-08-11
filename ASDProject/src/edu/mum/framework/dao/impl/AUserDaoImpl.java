@@ -20,9 +20,9 @@ public class AUserDaoImpl<T> extends DaoImpl<T> implements UserDao<T>{
 	}
 
 	@Override
-	public boolean update(AUser user) {
+	public void update(AUser user) {
 		remove(user.getId());
-		return this.findAll().add((T) user);
+		this.add((T) user);
 	}
 
 	@Override

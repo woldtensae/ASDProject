@@ -2,13 +2,14 @@ package edu.mum.framework.controller;
 
 import java.time.LocalDate;
 
-import edu.mum.framework.domain.concrete.Rent;
-import edu.mum.framework.domain.ARent;
 import edu.mum.framework.domain.AUser;
+import edu.mum.framework.domain.concrete.Rent;
+import edu.mum.framework.domain.concrete.User;
+import edu.mum.framework.generator.id.AutoGenerate;
+import edu.mum.framework.generator.id.IDGenerator;
 import edu.mum.framework.service.RentService;
 import edu.mum.framework.service.factory.ServiceFactory;
-import edu.umu.idGenerator.AutoGenerate;
-import edu.umu.idGenerator.IDGenerator;
+
 
 public class RentController {
 AutoGenerate autoGenerate;
@@ -20,7 +21,9 @@ AutoGenerate autoGenerate;
 		return new Rent(rentId, checkoutDate, returnDate, user);
 	}
 	
-	/*public RentService getRentServices(){
-		//return ServiceFactory.;
-	}*/
+	@SuppressWarnings("unchecked")
+	public RentService<Rent, User> getRentServices(){
+		return ServiceFactory.createRenttService(Rent.class, Rent.class.getSimpleName());
+		
+	}
 }

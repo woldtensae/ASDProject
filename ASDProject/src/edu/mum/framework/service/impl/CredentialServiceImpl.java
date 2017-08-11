@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.mum.framework.dao.CredentialDao;
 import edu.mum.framework.domain.ACredential;
+import edu.mum.framework.domain.concrete.Credential;
 import edu.mum.framework.service.CredentialService;
 
 public class CredentialServiceImpl<T> implements CredentialService<T> {
@@ -14,8 +15,13 @@ public class CredentialServiceImpl<T> implements CredentialService<T> {
 	}
 
 	@Override
-	public void saveCredential(T credential) {
+	public boolean saveCredential(T credential) {
+	  /*List<T> list= findAllCredential();
+	  if(list.stream()
+			  .anyMatch(x->(((ACredential)x).getPassword() .equals((ACredential)credential).getPassword())
+			        && (((ACredential) x).getUserName().equals((ACredential)credential).getPassword())))*/
 		credentialDao.add(credential);
+		    return true;
 		
 	}
 
@@ -43,9 +49,11 @@ public class CredentialServiceImpl<T> implements CredentialService<T> {
 
 	@Override
 	public boolean login(String userName, String password) {
-		/*List<T> list= findAllCredential();
-		if(list.stream().anyMatch(x->x.getPassword().equals(password) && x.getUserName().equals(userName)))
-		    return true;*/
+		List<T> list= findAllCredential();
+		System.out.println("list:   "+list);
+	
+		if(list.stream().anyMatch(x->((ACredential) x).getPassword().equals(password) && ((ACredential) x).getUserName().equals(userName)))
+		    return true;
 		return false;
 				
 	}

@@ -20,6 +20,7 @@ public enum FileInstace {
 			if(!file.exists()){
 				dir.mkdirs();
 				file.createNewFile();
+				return null;
 			}
 			FileInputStream fileInputStream = new FileInputStream(new File(directory + className + ".txt"));
 			input = new ObjectInputStream(fileInputStream);

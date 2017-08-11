@@ -1,6 +1,6 @@
 package edu.mum.app.domain;
 
-import edu.mum.framework.domain.ACategory;
+
 import edu.mum.framework.domain.AProduct;
 import edu.mum.framework.domain.Unit;
 import edu.mum.framework.domain.UserStatus;

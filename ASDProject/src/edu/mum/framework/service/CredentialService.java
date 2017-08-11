@@ -5,7 +5,7 @@ import java.util.List;
 import edu.mum.framework.domain.ACredential;
 
 public interface CredentialService<T> {
-	public void saveCredential(T credential);
+	public boolean saveCredential(T credential);
 	public void deleteCredential(T credential);
 	public void updateCredential(ACredential credential);
 	public T findCredentialByName(String username);
