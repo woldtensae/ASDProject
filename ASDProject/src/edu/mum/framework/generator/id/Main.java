@@ -1,4 +1,4 @@
-package edu.umu.idGenerator;
+package edu.mum.framework.generator.id;
 
 public class Main {
 	public static void main(String[] args){

@@ -1,4 +1,4 @@
-package edu.umu.idGenerator;
+package edu.mum.framework.generator.id;
 
 
 import java.io.EOFException;

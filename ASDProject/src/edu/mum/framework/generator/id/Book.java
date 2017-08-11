@@ -1,11 +1,13 @@
-package edu.umu.idGenerator;
+package edu.mum.framework.generator.id;
 
-public class Category {
+
+
+public class Book {
 	private int id;
 	AutoGenerate autoGenerate;
-	public Category(){
+	public Book(){
 		autoGenerate = IDGenerator.getInstance();
-		id = autoGenerate.getUniqueId(Category.class.getSimpleName());
+		id = autoGenerate.getUniqueId(Book.class.getSimpleName());
 	}
 	public int getId() {
 		return id;
