@@ -2,15 +2,16 @@ package edu.mum.framework.controller;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.List;
 
 import edu.mum.framework.domain.AProduct;
 import edu.mum.framework.domain.Unit;
 import edu.mum.framework.domain.concrete.Product;
+import edu.mum.framework.domain.concrete.User;
 import edu.mum.framework.generator.id.AutoGenerate;
 import edu.mum.framework.generator.id.IDGenerator;
 import edu.mum.framework.service.ProductService;
+import edu.mum.framework.service.UserService;
 import edu.mum.framework.service.factory.ServiceFactory;
 
 public class ProductController<T> {
@@ -50,7 +51,9 @@ public class ProductController<T> {
 					
 					
 				}			
-			
+				@SuppressWarnings("unchecked")
+				ProductService<AProduct> productService = ServiceFactory.createProductService(AProduct.class, AProduct.class.getSimpleName());
+				productService.saveProduct(obj);
 				System.out.println(obj);
 				System.out.println(obj.getClass().getSimpleName());
 				
