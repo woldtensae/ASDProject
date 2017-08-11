@@ -50,7 +50,8 @@ public class CredentialServiceImpl<T> implements CredentialService<T> {
 	@Override
 	public boolean login(String userName, String password) {
 		List<T> list= findAllCredential();
-		//System.out.println("list:   "+list);
+		System.out.println("list:   "+list);
+	
 		if(list.stream().anyMatch(x->((ACredential) x).getPassword().equals(password) && ((ACredential) x).getUserName().equals(userName)))
 		    return true;
 		return false;
