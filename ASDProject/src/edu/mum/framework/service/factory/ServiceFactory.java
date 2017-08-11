@@ -47,7 +47,7 @@ public class ServiceFactory<T> {
   }
 	
 	
-	public static <T> CategoryService createCategoryService(Class<T> daoType, String className) {
+	/*public static <T> CategoryService createCategoryService(Class<T> daoType, String className) {
 		if(null == categoryService) {
 			synchronized(ServiceFactory.class) {
 				if(null == categoryService) {
@@ -57,7 +57,7 @@ public class ServiceFactory<T> {
 			}
 		}
 		return categoryService;
-	}
+	}*/
 	
 	public static <T> CredentialService  createCredentialService(Class<T> daoType, String className) {
 		if(null == credentialService) {

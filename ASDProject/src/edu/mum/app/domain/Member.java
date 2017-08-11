@@ -2,12 +2,13 @@ package edu.mum.app.domain;
 
 
 import java.time.LocalDate;
+
+import edu.mum.framework.domain.ACredential;
+import edu.mum.framework.domain.AUser;
 import edu.mum.framework.domain.Address;
-import edu.mum.framework.domain.Credential;
-import edu.mum.framework.domain.User;
 import edu.mum.framework.domain.UserStatus;
 
-public class Member extends User{
+public class Member extends AUser{
 	   
 private static final long serialVersionUID = 1L;
 
@@ -15,7 +16,7 @@ private static final long serialVersionUID = 1L;
 	}
 
 	public Member(String id, LocalDate dob, String firstName, String lastName, String phoneNumber, Address address,
-			UserStatus userStatus, Credential credential) {
+			UserStatus userStatus, ACredential credential) {
 		super(id, dob, firstName, lastName, phoneNumber, address, userStatus, credential);
 		
 	}

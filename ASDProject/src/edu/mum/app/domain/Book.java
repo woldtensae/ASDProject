@@ -1,10 +1,11 @@
 package edu.mum.app.domain;
 
-import edu.mum.framework.domain.Category;
-import edu.mum.framework.domain.Product;
+import edu.mum.framework.domain.ACategory;
+import edu.mum.framework.domain.AProduct;
 import edu.mum.framework.domain.Unit;
+import edu.mum.framework.domain.UserStatus;
 
-public class Book extends Product {
+public class Book extends AProduct {
 
 	private static final long serialVersionUID = -5101693623665618963L;
 	private String publisher;
@@ -13,13 +14,12 @@ public class Book extends Product {
 	private String isbn;
 	private int availability;
 	private String author;
-
-	public Book() {
-
-	}
-
+    public Book(String productName, String productId,String productDesc,boolean status,double unitPrice,String category,Unit unit)
+    {
+    	super(productName, productId, productDesc, status, unitPrice, category, unit);
+    }
 	public Book(String productName, String productId, String productDesc, boolean status, double unitPrice,
-		Category category, Unit unit, String publisher, String yearPub, String shelfNo, String isbn,
+		String category, Unit unit, String publisher, String yearPub, String shelfNo, String isbn,
 			int availability, String author) {
 		super(productName, productId, productDesc, status, unitPrice, category, unit);
 				this.publisher = publisher;

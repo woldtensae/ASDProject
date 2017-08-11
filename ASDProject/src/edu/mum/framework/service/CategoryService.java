@@ -3,14 +3,14 @@ package edu.mum.framework.service;
 import java.util.List;
 
 import edu.mum.framework.domain.ACategory;
-import edu.mum.framework.domain.AProduct;
+import edu.mum.framework.domain.concrete.Category;
 
-public interface CategoryService<T> {
-	public void saveCategory(T category);
-	public void deleteCategory(T category);
-	public void updateCategor(ACategory category);
-	public <T> ACategory findOneCategory(String id);
-	public T findCategoryByName(String categoryName);
-	public List<T> findAllCategory();
+public interface CategoryService{
+	public void saveCategory(Category category);
+	public void deleteCategory(Category category);
+	public void updateCategor(Category category);
+	public Category findOneCategory(String id);
+	public Category findCategoryByName(String categoryName);
+	public List<Category> findAllCategory();
 
 }

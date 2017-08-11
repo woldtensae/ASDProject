@@ -11,6 +11,8 @@ public class Product extends AProduct implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	
 
 	public Product(String productName, String productId, String productDesc, boolean status, double unitPrice,
 			String category, Unit unit) {

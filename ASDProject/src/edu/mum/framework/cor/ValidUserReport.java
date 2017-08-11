@@ -6,20 +6,20 @@ import java.util.stream.Collectors;
 
 import org.omg.CORBA.Request;
 
-import edu.mum.framework.domain.User;
+import edu.mum.framework.domain.AUser;
 
 public class ValidUserReport extends Handler {
   
 	@Override
-	public void handleRequest(List<User> req) {
-		List<User> validUser=req.stream()
+	public void handleRequest(List<AUser> req) {
+		/*List<User> validUser=req.stream()
 				.filter(x->x.getAge() > 4 
 				              && x.getUserStatus()!=null &&
 					          ( x.getFirstName().equals("")!=true || x.getLastName().equals("")!=true))
 				 .collect(Collectors.toList());
 		System.out.println("validUser  :"+  validUser);
 		if(nextAgent!=null)
-			nextAgent.handleRequest(validUser);
+			nextAgent.handleRequest(validUser);*/
 		
 	}
 
