@@ -8,13 +8,18 @@ public class UserController<T> {
 	
 	
 	UserDirector userDirector = new UserDirector(new UserCreator());
+	Class<T> classType;
+	public UserController(Class<T> classType) {
+		this.classType = classType;
+	}
+	
 	public UserDirector getUserDirector(){
 		return userDirector;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public UserService<T> getUserServices(){
-		return ServiceFactory.createUserService((Class<T>)getClass(), 
-				((Class<T>)getClass()).getSimpleName());
+		return ServiceFactory.createUserService(classType.getClass(), 
+				classType.getClass().getSimpleName());
 	}
 }

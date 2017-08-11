@@ -1,5 +1,6 @@
 package edu.mum.framework.dao.impl.proxy;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -27,7 +28,9 @@ public enum FileInstace {
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
+		}  catch (EOFException ex) {
+			return null;
+		}catch (IOException e) {
 			e.printStackTrace();
 		}
 		return input;
