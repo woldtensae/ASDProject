@@ -24,7 +24,7 @@ public class UserCreator implements UserBuilder{
 			(Credential.class, Credential.class.getSimpleName());
 	public void userInfo(LocalDate dob, String firstName, String lastName, String phoneNumber){
 		autoGenerate = IDGenerator.getInstance();
-		String id = String.valueOf(autoGenerate.getUniqueId(User.class.getSimpleName()));
+		String id = autoGenerate.getUniqueId(User.class.getSimpleName());
 		user = new User(id, dob,firstName, lastName, phoneNumber);
 		
 	}

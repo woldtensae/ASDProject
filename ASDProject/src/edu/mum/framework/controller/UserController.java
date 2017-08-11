@@ -4,13 +4,8 @@ import edu.mum.framework.domain.concrete.User;
 import edu.mum.framework.service.UserService;
 import edu.mum.framework.service.factory.ServiceFactory;
 
-public class UserController {
-	public final static UserController userController = new UserController();
-	private UserController() {}
+public class UserController<T> {
 	
-	public static UserController getUserController(){
-		return userController;
-	}
 	
 	UserDirector userDirector = new UserDirector(new UserCreator());
 	public UserDirector getUserDirector(){
@@ -18,7 +13,8 @@ public class UserController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public UserService<User> getUserServices(){
-		return ServiceFactory.createUserService(User.class, User.class.getSimpleName());
+	public UserService<T> getUserServices(){
+		return ServiceFactory.createUserService((Class<T>)getClass(), 
+				((Class<T>)getClass()).getSimpleName());
 	}
 }

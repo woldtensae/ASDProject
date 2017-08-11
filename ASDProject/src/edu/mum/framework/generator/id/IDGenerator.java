@@ -46,7 +46,7 @@ public class IDGenerator implements AutoGenerate{
 		}
 	}
 	
-	public int getUniqueId(String className){
+	public String getUniqueId(String className){
 		
 		Map<String, Integer> uniquIdsMap =new HashMap<String, Integer>();
 		FileInputStream f=null;
@@ -58,9 +58,10 @@ public class IDGenerator implements AutoGenerate{
 			try{
 			File file = new File("fileId.txt");
 			if(file.createNewFile()){
-				uniquIdsMap.put(className, 100);
+				int random = (int )(Math.random() * 100 + 1);
+				uniquIdsMap.put(className, random);
 				writeUniqueIdOnMap(uniquIdsMap);
-				return 100;
+				return String.valueOf(random);
 			}
 			
 	        f = new FileInputStream(file);
@@ -74,7 +75,7 @@ public class IDGenerator implements AutoGenerate{
 				num = num +1;
 				readMap.put(className, num);
 			}else{
-				num = 100;
+				num = (int )(Math.random() * 100 + 1);
 				readMap.put(className, num);
 	
 			}
@@ -98,7 +99,6 @@ public class IDGenerator implements AutoGenerate{
 				e.printStackTrace();
 			}
 		}
-
-	return num;		
+	return String.valueOf(num);		
 	}
 }
