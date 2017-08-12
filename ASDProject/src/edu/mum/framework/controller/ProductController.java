@@ -18,9 +18,12 @@ public class ProductController<T> {
 	
 	AutoGenerate autoGenerate;
 	
+	private Class<T> classType;
 	
+	public ProductController(Class<T> classType) {
+		this.classType = classType;
+	}
 	
-
 	public boolean buillProduct(Class<AProduct> currentClass, List<Field> filteredParams, List<String> listOfArguments,
 			String productName, String productDesc, double unitPrice, Unit unit){
 	
@@ -47,15 +50,11 @@ public class ProductController<T> {
 							currentClass.getMethods()[i].invoke(obj, listOfArguments.get(j));
 						}
 						
-					}
-					
-					
+					}					
 				}			
 				@SuppressWarnings("unchecked")
 				ProductService<AProduct> productService = ServiceFactory.createProductService(AProduct.class, AProduct.class.getSimpleName());
 				productService.saveProduct(obj);
-				System.out.println(obj);
-				System.out.println(obj.getClass().getSimpleName());
 				
 				
 			} catch (SecurityException e) {		
@@ -74,31 +73,12 @@ public class ProductController<T> {
 				e.printStackTrace();
 				return false;
 			} 
-			return true;
-			
+			return true;			
 		}
 		
-
-	
-	
-	
-	
-/*	public Product buildProduct(String productName, String productDesc, boolean status, double unitPrice,
-			String category, Unit unit, Class<Product> cls ){
-		
-	
-		
-		autoGenerate = IDGenerator.getInstance();
-		ProductService<Product> productService = getProductServices();
-		String productId = String.valueOf(autoGenerate.getUniqueId(Product.class.getSimpleName()));
-		Product product = new Product(productName, productId, productDesc, status, unitPrice,
-				category, unit);
-		productService.saveProduct(product);
-		return product;
-	}*/
-	
 	@SuppressWarnings("unchecked")
-	public ProductService<Product> getProductServices(){
-		return ServiceFactory.createProductService(Product.class, Product.class.getSimpleName());
+	public ProductService<T> getProductServices(){
+		return ServiceFactory.createProductService(classType.getClass(), 
+				classType.getClass().getSimpleName());
 	}
 }

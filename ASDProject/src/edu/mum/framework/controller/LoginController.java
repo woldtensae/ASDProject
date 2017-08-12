@@ -13,9 +13,7 @@ public class LoginController<T>{
 	}
 
 	public T authenticateUser(String userName, String password){
-		
-		/*Any class can extend this class and use the authenticate method by passing a 
-		 * concrete class*/		
+			
 		@SuppressWarnings("unchecked")
 		UserService<T> cs = ServiceFactory.createUserService(classType, 
 				classType.getSimpleName());

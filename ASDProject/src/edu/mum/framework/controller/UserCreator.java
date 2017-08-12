@@ -2,6 +2,7 @@ package edu.mum.framework.controller;
 
 import java.time.LocalDate;
 
+
 import edu.mum.framework.domain.Address;
 import edu.mum.framework.domain.Role;
 import edu.mum.framework.domain.UserStatus;
@@ -14,9 +15,10 @@ import edu.mum.framework.service.UserService;
 import edu.mum.framework.service.factory.ServiceFactory;
 
 
-public class UserCreator implements UserBuilder{
+public class UserCreator<T> implements UserBuilder<User>{
 	AutoGenerate autoGenerate;
 	User user;
+	
 	@SuppressWarnings("unchecked")
 	UserService<User> userService = ServiceFactory.createUserService(User.class, User.class.getSimpleName());
 	@SuppressWarnings("unchecked")
@@ -25,7 +27,7 @@ public class UserCreator implements UserBuilder{
 	public void userInfo(LocalDate dob, String firstName, String lastName, String phoneNumber){
 		autoGenerate = IDGenerator.getInstance();
 		String id = autoGenerate.getUniqueId(User.class.getSimpleName());
-		user = new User(id, dob,firstName, lastName, phoneNumber);
+		user= new User(id, dob,firstName, lastName, phoneNumber);
 		
 	}
 	
@@ -38,7 +40,7 @@ public class UserCreator implements UserBuilder{
 	public void buildCredential(String userName, String password, Role role) {
 		Credential credential = new Credential(userName, password, role);
 		credentialService.saveCredential(credential);
-		user.setCredentialA(credential);;
+		user.setCredentialA(credential);
 	}
 	
 	@Override

@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 import edu.mum.framework.domain.Role;
 import edu.mum.framework.domain.UserStatus;
-import edu.mum.framework.domain.concrete.User;
 
-public class UserDirector {
-	UserBuilder userBuilder = null;
-	public UserDirector(UserBuilder userBuilder){
+
+public class UserDirector<T> {
+	UserBuilder<T> userBuilder = null;
+	public UserDirector(UserBuilder<T> userBuilder){
 		this.userBuilder = userBuilder;
 	}
 	
@@ -19,13 +19,16 @@ public class UserDirector {
 	public void userAddress(String address, String city, String state, int zip){
 		userBuilder.buildAddress(address, city, state, zip);
 	}
+	
 	public void userCredential(String userName, String password, Role role){
 		userBuilder.buildCredential(userName, password, role);
 	}
+	
 	public void userStatus(UserStatus userStatus){
-		userBuilder.buildStatus(userStatus);;
+		userBuilder.buildStatus(userStatus);
 	}
-	public User createFullUser(){
+	
+	public T createFullUser(){
 		return userBuilder.createFullUser();
 	}
 }

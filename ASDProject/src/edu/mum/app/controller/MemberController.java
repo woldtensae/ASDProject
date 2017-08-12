@@ -1,12 +1,13 @@
 package edu.mum.app.controller;
 
-import edu.mum.app.domain.Member;
 import edu.mum.framework.controller.UserController;
+import edu.mum.framework.domain.concrete.User;
 
-public class MemberController extends UserController<Member>{
-	
+
+public class MemberController extends UserController<User>{	
 	public MemberController() {
-		super(Member.class);
-	}
-	//public 
+		super(User.class);
+	}	
 }
+
+

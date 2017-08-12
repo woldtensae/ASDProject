@@ -9,10 +9,12 @@ import edu.mum.framework.domain.Address;
 import edu.mum.framework.domain.UserStatus;
 
 public class Member extends AUser{
-	   
-public Member(String id, LocalDate dob, String firstName, String lastName, String phoneNumber) {
+
+	
+
+public Member(String id, LocalDate dob, String firstName, String lastName, String phoneNumber, int age) {
 		super(id, dob, firstName, lastName, phoneNumber);
-		
+
 	}
 
 private static final long serialVersionUID = 1L;

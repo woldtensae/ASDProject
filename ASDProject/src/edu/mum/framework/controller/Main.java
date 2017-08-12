@@ -12,7 +12,7 @@ import edu.mum.framework.domain.concrete.User;
 public class Main {
 	public static void main(String[] str){
 		UserController<User> uc = new UserController<User>(User.class);
-		UserDirector ud = uc.getUserDirector();
+		UserDirector<User> ud = uc.getUserDirector();
 		
 		
 			ud.userInfo(LocalDate.of(1981, 12, 18), "name3","name3", "22222222");
