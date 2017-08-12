@@ -1,9 +1,7 @@
 package edu.mum.framework.domain;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @SuppressWarnings("rawtypes")
 public abstract class ARent<Y> implements Serializable {
@@ -48,11 +46,14 @@ public abstract class ARent<Y> implements Serializable {
 		this.totalRentPrice = totalRentPrice;
 	}
 
-	public ARent(String rentId, LocalDateTime checkoutDateTime, LocalDateTime returnDateTime, AUser user) {
+	public ARent(String rentId, LocalDateTime checkoutDateTime, LocalDateTime returnDateTime, AUser user,AProduct rentedProduct) {
 		this.rentId = rentId;
 		this.checkoutDateTime = checkoutDateTime;
 		this.returnDateTime = returnDateTime;
 		this.user = user;
+		this.rentedProduct=rentedProduct;
+		setRentStatus(RentStatus.OPEN);
+		this.rentedProduct.setStatus(false);
 
 	}
 
@@ -74,15 +75,6 @@ public abstract class ARent<Y> implements Serializable {
 
 	public void setUser(AUser user) {
 		this.user = user;
-	}
-
-	
-
-	@Override
-	public String toString() {
-		return "ARent [rentId=" + rentId + ", checkoutDateTime=" + checkoutDateTime + ", returnDateTime="
-				+ returnDateTime + ", rentedProduct=" + rentedProduct + ", totalRentPrice=" + totalRentPrice + ", user="
-				+ user + ", rentStatus=" + rentStatus + "]";
 	}
 
 	public RentStatus getRentStatus() {

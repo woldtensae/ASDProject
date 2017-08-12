@@ -1,7 +1,8 @@
 package edu.mum.framework.controller;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import edu.mum.framework.domain.AProduct;
 import edu.mum.framework.domain.AUser;
 import edu.mum.framework.domain.concrete.Rent;
 import edu.mum.framework.generator.id.AutoGenerate;
@@ -13,11 +14,12 @@ import edu.mum.framework.service.factory.ServiceFactory;
 public class RentController {
 AutoGenerate autoGenerate;
 	
-	public Rent buildRent(LocalDate checkoutDate, LocalDate returnDate, AUser user){
+	public Rent buildRent(LocalDateTime checkoutDate, LocalDateTime returnDate, AUser user, 
+			AProduct product){
 		
 		autoGenerate = IDGenerator.getInstance();
 		String rentId = String.valueOf(autoGenerate.getUniqueId(Rent.class.getSimpleName()));
-		return new Rent(rentId, checkoutDate, returnDate, user);
+		return new Rent(rentId, checkoutDate, returnDate, user, product);
 	}
 	
 	@SuppressWarnings("unchecked")
