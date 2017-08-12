@@ -1,6 +1,9 @@
 package edu.mum.framework.service.impl;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,25 +33,9 @@ public class RentServiceImpl<T> implements RentService<T> {
 
 	@Override
 	public void saveRental(T rent) {
-		List<AProduct> listRentProduct = ((Rent) rent).getRentedProducts();
-		System.out.println("listRentProduct :"+listRentProduct);
-		try {
-			for (AProduct p : listRentProduct) {
-				p.setStatus(false);
-			}
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
+		
+		((Rent)rent).getRentedProduct().setStatus(false);
 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		rentDao.add(rent);
-
-	}
-
-	private List<AProduct> Rent(T rent) {
-		return (List<AProduct>) ((Rent)rent).getRentedProducts();
 	}
 
 	@Override
@@ -75,21 +62,21 @@ public class RentServiceImpl<T> implements RentService<T> {
 
 	
 	@Override
-	public double totalRentPrice(T rent) {
-		List<AProduct> listRentProduct = ((Rent) rent).getRentedProducts();
-		double cost = 0;
-		int rentLenght = 0;
-		for (AProduct p : listRentProduct) {
-
-			rentLenght = (LocalDate.now().getDayOfYear() - ((Rent) rent).getCheckoutDate().getDayOfYear());
-			if (p.getUnit() == Unit.DAILY) {
-				cost += p.getUnitPrice() * rentLenght;
-
+	public Long totalRentPrice(T rent) {
+		
+		long rentCost=0;
+        Rent r=(Rent)rent;
+			if (r.getRentedProduct().getUnit() == Unit.DAILY) {
+			  long days = Duration.between(((Rent)rent).getReturnDateTime(), ((Rent)rent).getCheckoutDateTime()).toDays();
+				rentCost = (long) (r.getRentedProduct().getUnitPrice() * days);
 			}
-			if (p.getUnit() == Unit.HOURLY)
-				cost += p.getUnitPrice() * (rentLenght * 8);
-		}
-		return cost;
+			if (r.getRentedProduct().getUnit() == Unit.HOURLY){
+				Long hr=Duration.between(((Rent)rent).getReturnDateTime(), ((Rent)rent).getCheckoutDateTime()).toHours();
+				rentCost = (long) (r.getRentedProduct().getUnitPrice() * hr);
+			}
+				
+		
+		return rentCost;
 		
 	}
 		
@@ -97,53 +84,56 @@ public class RentServiceImpl<T> implements RentService<T> {
 
 	@Override
 	public boolean checkOut(T rent) {
-		List<AProduct> listRentProduct = ((Rent) rent).getRentedProducts();
-		if(listRentProduct.size()>0){
-		for (AProduct p :listRentProduct) {
-			p.setStatus(true);
-		}
-		return true;
-		}
+		if(((Rent)rent).getRentedProduct().isStatus())
 		return false;
+		else 
+			((Rent)rent).getRentedProduct().setStatus(false);
+		return true;
 	}
 
 	@Override
-	public boolean checkIn(T rent) {
-		return false;
+	public boolean returnProduct(T rent) {
+		if(((Rent) rent).getRentedProduct().isStatus())
+           return false;
+		else 
+			((Rent)rent).getRentedProduct().setStatus(false);
+		     return true;
 	}
 	
 	@Override
 	public 	List<AProduct> borrowedItemByUser(AUser user) {
 		System.out.println("User form Method "+user);
 		List<AProduct> list = new ArrayList<>();
-		((List<Rent>) rentDao.findAll()).stream()
-										.filter(x->x.getUser().getFirstName().equals(user.getFirstName()))
-				                        .forEach(y->y.getRentedProducts().forEach(p->list.add((AProduct) p)));
-		return list;
+		return ((List<Rent>) rentDao.findAll()).stream()
+										.filter(x->x.getUser().getId().equals(user.getId()))
+										.map(y->y.getRentedProduct())
+										.collect(Collectors.toList());
+		
 	} 
 
 	@Override
 	public List<AProduct> returnedItemByUser(AUser user) {
-		return borrowedItemByUser(user).stream()
-								.filter(p->p.isStatus()==true)
-								.collect(Collectors.toList());
+		List<AProduct> list = new ArrayList<>();
+		return ((List<Rent>) rentDao.findAll()).stream()
+										.filter(x->x.getUser().getId().equals(user.getId())
+												 && x.getRentedProduct().isStatus()==true)
+										.map(y->y.getRentedProduct())
+										.collect(Collectors.toList());
 		 
 		
 		}
 
 	@Override
 	public List<AProduct> ItemNotReturnedByUser(AUser user) {
-		return borrowedItemByUser(user).stream()
-				.filter(p->p.isStatus()==false)
-				.collect(Collectors.toList());
+		List<AProduct> list = new ArrayList<>();
+		return ((List<Rent>) rentDao.findAll()).stream()
+										.filter(x->x.getUser().getId().equals(user.getId())
+												 && x.getRentedProduct().isStatus()==false)
+										.map(y->y.getRentedProduct())
+										.collect(Collectors.toList());
+		 
 	}
 
-	@Override
-	public List<AProduct> AllNotReturned() {
-		List<AProduct> list = new ArrayList<>();
-		((List<Rent>) rentDao.findAll())
-							 .forEach(r->list.addAll(ItemNotReturnedByUser(r.getUser())));
-		return list;
-	}
-    
+	
+  
 }

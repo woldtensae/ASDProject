@@ -11,12 +11,11 @@ public interface RentService<T> {
 	public void updateCategor(T rent);
 	public T findOneRent(String id);
 	public List<T> findAllRent();
-	public double totalRentPrice(T rent);
+	public Long totalRentPrice(T rent);
 	public boolean checkOut(T rent);
-	public boolean checkIn(T rent);
+	public boolean returnProduct(T rent);
 	public List<AProduct> borrowedItemByUser(AUser user);
 	public List<AProduct> returnedItemByUser(AUser user);
 	public List<AProduct> ItemNotReturnedByUser(AUser user);
-	public List<AProduct> AllNotReturned();
   
 }

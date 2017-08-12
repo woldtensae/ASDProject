@@ -2,19 +2,43 @@ package edu.mum.framework.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @SuppressWarnings("rawtypes")
-public abstract class ARent<Y> implements Serializable{
+public abstract class ARent<Y> implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String rentId;
-	private LocalDate checkoutDate;
-	private LocalDate returnDate;
-	private List<AProduct> rentedProducts;
-	private  double totalRentPrice;
+	private LocalDateTime checkoutDateTime;
+	private LocalDateTime returnDateTime;
+	private AProduct rentedProduct;
+	private double totalRentPrice;
 	private AUser user;
 	private RentStatus rentStatus;
+
+	public LocalDateTime getCheckoutDateTime() {
+		return checkoutDateTime;
+	}
+
+	public void setCheckoutDateTime(LocalDateTime checkoutDateTime) {
+		this.checkoutDateTime = checkoutDateTime;
+	}
+
+	public LocalDateTime getReturnDateTime() {
+		return returnDateTime;
+	}
+
+	public void setReturnDateTime(LocalDateTime returnDateTime) {
+		this.returnDateTime = returnDateTime;
+	}
+
+	public AProduct getRentedProduct() {
+		return rentedProduct;
+	}
+
+	public void setRentedProduct(AProduct rentedProduct) {
+		this.rentedProduct = rentedProduct;
+	}
 
 	public double getTotalRentPrice() {
 		return totalRentPrice;
@@ -24,90 +48,65 @@ public abstract class ARent<Y> implements Serializable{
 		this.totalRentPrice = totalRentPrice;
 	}
 
-	public ARent(String rentId, LocalDate checkoutDate, LocalDate returnDate, AUser user) {
+	public ARent(String rentId, LocalDateTime checkoutDateTime, LocalDateTime returnDateTime, AUser user) {
 		this.rentId = rentId;
-		this.checkoutDate = checkoutDate;
-		this.returnDate = returnDate;
+		this.checkoutDateTime = checkoutDateTime;
+		this.returnDateTime = returnDateTime;
 		this.user = user;
-		this.rentedProducts=new ArrayList<>();
+
 	}
-	public ARent()
-	{
-		
+
+	public ARent() {
+
 	}
 
 	public String getRentId() {
 		return rentId;
 	}
+
 	public void setRentId(String rentId) {
 		this.rentId = rentId;
 	}
-	public LocalDate getCheckoutDate() {
-		return checkoutDate;
-	}
-	public void setCheckoutDate(LocalDate checkoutDate) {
-		this.checkoutDate = checkoutDate;
-	}
-	public LocalDate getReturnDate() {
-		return returnDate;
-	}
-	public void setReturnDate(LocalDate returnDate) {
-		this.returnDate = returnDate;
-	}
+
 	public AUser getUser() {
 		return user;
 	}
+
 	public void setUser(AUser user) {
 		this.user = user;
 	}
-	public boolean addProduct(AProduct product)
-	{
-		if (product.isStatus()) {
-			rentedProducts.add(product);
-			product.setStatus(false);
-	      return true;
-		}
-		return false;
-	}
+
+	
 
 	@Override
 	public String toString() {
-		return "ARent [rentId=" + rentId + ", checkoutDate=" + checkoutDate + ", returnDate=" + returnDate
-				+ ", rentedProducts=" + rentedProducts + ", totalRentPrice=" + totalRentPrice + ", user=" + user + "]";
+		return "ARent [rentId=" + rentId + ", checkoutDateTime=" + checkoutDateTime + ", returnDateTime="
+				+ returnDateTime + ", rentedProduct=" + rentedProduct + ", totalRentPrice=" + totalRentPrice + ", user="
+				+ user + ", rentStatus=" + rentStatus + "]";
 	}
 
-	public List<AProduct> getRentedProducts() {
-		return rentedProducts;
-	}
-
-	public void setRentedProducts(List<AProduct> rentedProducts) {
-		this.rentedProducts = rentedProducts;
-	}
-    
 	public RentStatus getRentStatus() {
-	   for(AProduct p: getRentedProducts())
-		   if(p.isStatus()==false){
-			   setRentStatus(RentStatus.OPEN);
-	        return rentStatus;
-		   }
-			   setRentStatus(RentStatus.CLOSED);
+		if (this.rentedProduct.isStatus() == false) {
+			setRentStatus(RentStatus.OPEN);
+			return rentStatus;
+		}
+		setRentStatus(RentStatus.CLOSED);
 		return rentStatus;
 	}
-   
 
 	private void setRentStatus(RentStatus rentStatus) {
-		this.rentStatus=rentStatus;
-		
+		this.rentStatus = rentStatus;
+
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((checkoutDate == null) ? 0 : checkoutDate.hashCode());
 		result = prime * result + ((rentId == null) ? 0 : rentId.hashCode());
-		result = prime * result + ((rentedProducts == null) ? 0 : rentedProducts.hashCode());
-		result = prime * result + ((returnDate == null) ? 0 : returnDate.hashCode());
+		result = prime * result + ((rentStatus == null) ? 0 : rentStatus.hashCode());
+		result = prime * result + ((rentedProduct == null) ? 0 : rentedProduct.hashCode());
+		result = prime * result + ((returnDateTime == null) ? 0 : returnDateTime.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(totalRentPrice);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -124,25 +123,22 @@ public abstract class ARent<Y> implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		ARent other = (ARent) obj;
-		if (checkoutDate == null) {
-			if (other.checkoutDate != null)
-				return false;
-		} else if (!checkoutDate.equals(other.checkoutDate))
-			return false;
 		if (rentId == null) {
 			if (other.rentId != null)
 				return false;
 		} else if (!rentId.equals(other.rentId))
 			return false;
-		if (rentedProducts == null) {
-			if (other.rentedProducts != null)
-				return false;
-		} else if (!rentedProducts.equals(other.rentedProducts))
+		if (rentStatus != other.rentStatus)
 			return false;
-		if (returnDate == null) {
-			if (other.returnDate != null)
+		if (rentedProduct == null) {
+			if (other.rentedProduct != null)
 				return false;
-		} else if (!returnDate.equals(other.returnDate))
+		} else if (!rentedProduct.equals(other.rentedProduct))
+			return false;
+		if (returnDateTime == null) {
+			if (other.returnDateTime != null)
+				return false;
+		} else if (!returnDateTime.equals(other.returnDateTime))
 			return false;
 		if (Double.doubleToLongBits(totalRentPrice) != Double.doubleToLongBits(other.totalRentPrice))
 			return false;
@@ -154,8 +150,4 @@ public abstract class ARent<Y> implements Serializable{
 		return true;
 	}
 
-	public <T> double getPrice(Y rentservice, T rent) {
-		return 0;
-	}
-	
 }
