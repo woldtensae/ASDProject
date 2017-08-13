@@ -6,9 +6,9 @@ import edu.mum.framework.domain.Role;
 import edu.mum.framework.domain.UserStatus;
 
 
-public class UserDirector<T> {
-	UserBuilder<T> userBuilder = null;
-	public UserDirector(UserBuilder<T> userBuilder){
+public class UserDirector<AUser> {
+	UserBuilder<AUser> userBuilder = null;
+	public UserDirector(UserBuilder<AUser> userBuilder){
 		this.userBuilder = userBuilder;
 	}
 	
@@ -28,7 +28,7 @@ public class UserDirector<T> {
 		userBuilder.buildStatus(userStatus);
 	}
 	
-	public T createFullUser(){
+	public AUser createFullUser(){
 		return userBuilder.createFullUser();
 	}
 }

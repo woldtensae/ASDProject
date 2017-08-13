@@ -3,49 +3,36 @@ package edu.mum.framework.controller;
 
 import java.time.LocalDate;
 
-
-
+import edu.mum.app.domain.Member;
+import edu.mum.framework.domain.AUser;
 import edu.mum.framework.domain.Role;
-
 import edu.mum.framework.domain.concrete.User;
 
 public class Main {
 	public static void main(String[] str){
-		UserController<User> uc = new UserController<User>(User.class);
-		UserDirector<User> ud = uc.getUserDirector();
+		/*UserController<AUser> uc = new UserController<AUser>(AUser.class);
+		UserDirector<AUser> ud = uc.getUserDirector();
 		
 		
 			ud.userInfo(LocalDate.of(1981, 12, 18), "name3","name3", "22222222");
 			ud.userAddress("22222", "addisAbaba", "Checkos", 2345);
 			ud.userCredential("meron", "tolosa", Role.ADMIN);
-			User user = ud.createFullUser();
-			System.out.println(user);	
-			System.out.println(uc.getUserServices().findOneUser(user.getId()));
+			ud.createFullUser();
 			
-			
-			/*
-			 * 
 		
-			ProductController  productController = new ProductController();
-			Product product = productController.buildProduct("book", "ASD", true, 9, "book", Unit.HOURLY);
-			ProductController  productController = new ProductController();
-			Product product = productController.buildProduct("book1", "Sport", true, 10, "Megazine", Unit.DAILY);
-		
-			ProductService<Product> productService = productController.getProductServices();
-			System.out.println(productService.findOneProduct(product.getProductId()));
-			System.out.println(productService.findAllProduct());
-		
-		*/
 			LoginController<User> lc = new LoginController<User>(User.class);
-			System.out.println(lc.authenticateUser("meron", "tolosa"));
-			
-			/*MemberLoginController mc = new MemberLoginController();
-			System.out.println(mc.authenticateUser("aman", "estifanos"));*/
+			System.out.println(lc.authenticateUser("meron", "tolosa"));*/
+		
+		
+		
+		
 			
 	}
 }
 
-
+class Member1{
+	
+}
 
 
 

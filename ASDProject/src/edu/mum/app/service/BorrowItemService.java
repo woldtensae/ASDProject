@@ -6,8 +6,6 @@ import edu.mum.framework.service.impl.RentServiceImpl;
 public class BorrowItemService extends RentServiceImpl {
 
 	public BorrowItemService(RentDao rentDao) {
-		super(rentDao);
-		
+		super(rentDao);	
 	}
-
 }

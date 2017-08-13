@@ -62,14 +62,11 @@ public class  UserServiceImpl<T> implements UserService<T>{
 	@Override
 	public T login(String userName, String password) {
 		List<AUser> list = (List<AUser>) findAllUser();
-		System.out.println("list :"+list);
 		for (AUser u : list) {
 			if (u.getCredentialA().getUserName().equals(userName) && u.getCredentialA().getPassword().equals(password))
 				return (T) u;
-
 		}
 		return null;
-
 	}
 
 }
