@@ -19,9 +19,9 @@ public class Main {
 			ud.userCredential("meron", "tolosa", Role.ADMIN);
 			ud.createFullUser();
 			
-		
+		*/
 			LoginController<User> lc = new LoginController<User>(User.class);
-			System.out.println(lc.authenticateUser("meron", "tolosa"));*/
+			System.out.println(lc.authenticateUser("meron", "tolosa"));
 		
 		
 		

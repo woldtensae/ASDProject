@@ -11,8 +11,7 @@ public class MemberController extends UserController<AUser>{
 		super(AUser.class);
 	}
 	
-	MemberService ms = new MemberService(new MemberDao());
-	
+	MemberService ms = new MemberService(new MemberDao());	
 	public MemberService getMemberService(){
 		return ms;
 	}

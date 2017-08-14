@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.0" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+  <interface id="1" language="java" name="edu.mum.framework.generator.id.AutoGenerate" project="ASDLibrary" 
+    file="/ASDLibrary/edu/mum/framework/generator/id/AutoGenerate.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="330" y="115"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="false"/>      
+      <operations public="true" package="false" protected="false" private="true" static="false"/>    
+    </display>  
+  </interface>  
+  <class id="2" language="java" name="edu.mum.framework.generator.id.IDGenerator" project="ASDLibrary" 
+    file="/ASDLibrary/edu/mum/framework/generator/id/IDGenerator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="103" width="253" x="205" y="255"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="false"/>      
+      <operations public="true" package="false" protected="false" private="true" static="false"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="java.lang.Math" project="12_1" 
+    file="C:/Program Files/Java/jre1.8.0_144/lib/rt.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="725" y="306"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="false"/>      
+      <operations public="true" package="false" protected="false" private="true" static="false"/>    
+    </display>  
+  </class>  
+  <dependency id="4">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <association id="5">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="6" name="fileConnection"/>      
+      <multiplicity id="7" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <realization id="8">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="false" protected="false" private="true" static="false"/>    
+    <operations public="true" package="false" protected="false" private="true" static="false"/>  
+  </classifier-display>  
+  <association-display labels="false" multiplicity="false"/>
+</class-diagram>

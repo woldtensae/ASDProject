@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.0" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="false" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+  <interface id="1" language="java" name="edu.mum.framework.controller.UserBuilder" project="ASDLibrary" 
+    file="/ASDLibrary/edu/mum/framework/controller/UserBuilder.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="434" y="87"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="true" private="true" static="false"/>      
+      <operations public="true" package="false" protected="false" private="true" static="false"/>    
+    </display>  
+  </interface>  
+  <class id="2" language="java" name="edu.mum.framework.controller.UserCreator" project="ASDLibrary" 
+    file="/ASDLibrary/edu/mum/framework/controller/UserCreator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="438" y="356"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="true" private="true" static="false"/>      
+      <operations public="true" package="false" protected="false" private="true" static="false"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="edu.mum.framework.controller.UserDirector" project="ASDLibrary" 
+    file="/ASDLibrary/edu/mum/framework/controller/UserDirector.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="157" width="238" x="654" y="10"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="true" private="true" static="false"/>      
+      <operations public="true" package="false" protected="false" private="true" static="false"/>    
+    </display>  
+  </class>  
+  <association id="4">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="5" name="userBuilder"/>      
+      <multiplicity id="6" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <dependency id="7">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="false" protected="true" private="true" static="false"/>    
+    <operations public="true" package="false" protected="false" private="true" static="false"/>  
+  </classifier-display>  
+  <association-display labels="false" multiplicity="false"/>
+</class-diagram>

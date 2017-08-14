@@ -47,7 +47,11 @@
 	 
  /**************************** Product Controller ******************************/
  
-  /**************************** Rent Controller ******************************/
+ 	Specific product classes are created dynamically by the product controller from the information that is passed from 
+ 	the UIController name of the class, List of Fields containing the fields in the class and list of the strings containing 
+ 	parameters of methods.  
+ 	
+ 	after instantiating the object then passed it to the service method for saving 
  
  
  /**************************** IDGenerator ******************************/
